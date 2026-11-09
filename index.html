@@ -13,7 +13,18 @@
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <script>
 (()=>{'use strict';const $=s=>document.querySelector(s);const STORE='cpp_end_shift_v1';const firebaseConfig={apiKey:"AIzaSyDsM0rqJmFwBp-lr6sEc5sm4201vRSNCQE",authDomain:"bao-cao-cuoi-ca.firebaseapp.com",projectId:"bao-cao-cuoi-ca",storageBucket:"bao-cao-cuoi-ca.firebasestorage.app",messagingSenderId:"179914287974",appId:"1:179914287974:web:d61a93d1ef7104f3bd76a7"};
- const accounts={hieu:{email:'minhhieumtp010@gmail.com',uid:'dV78GnSzjUOCnmMruVSmksGh4xM2',editor:'cpp'},dinh:{email:'xiaolynhfarm3@gmail.com',uid:'73UHzVlhuyViy54ZNM1vltxaiSX2',editor:'h2'}};
+ const accounts={
+  hieu:{
+    email:'minhhieumtp010@gmail.com',
+    uid:'73UHzVlhuyViy54ZNM1vltxaiSX2',
+    editor:'cpp'
+  },
+  dinh:{
+    email:'xiaolynhfarm3@gmail.com',
+    uid:'dV78GnSzjUOCnmMruVSmksGh4xM2',
+    editor:'h2'
+  }
+};
  firebase.initializeApp(firebaseConfig);const auth=firebase.auth(),fire=firebase.firestore();let signed=null,unsubscribeFields=null,unsubscribeIssues=null,unsubscribeHistory=null,cloudReady=false,cloudLoading=false,fieldTimers=new Map(),lastCloudValues={};
  let db;try{db=JSON.parse(localStorage.getItem(STORE))||{drafts:{},history:{},issues:null}}catch{db={drafts:{},history:{},issues:null}};const defaults=[
 'Rò nước đường tuần hoàn CPU-1A','Rò nước đường tuần hoàn CPU-1B','Rò nước đường tuần hoàn CPU-1C','Rò nước ở mặt bích đầu ra và van đầu hút bơm tuần hoàn hệ thống CPP S1','Rò nước chèn ở van khí nén đường rửa ngược Pre-Filter A hệ thống CPP S1','Hệ thống CPP S1 chưa có sàn thao tác','Rò nước đầu vào, đầu ra CPU-2A','Rò nước ở van Selenoi điền nước Pre-Filter 2A','Van FCV bypass hệ thống CPP S2 bị lỗi logic (tự động nhảy Manual về Auto khi điền nước CPU thứ 2)','Ejector hệ thống hoàn nguyên hạt nhựa có tình trạng bị rò nước, nhà thầu đã tiến hành kiểm tra, chưa khắc phục.','Bơm hồ trung hoà A, C có tình trạng bị rò nước ở phớt chèn cơ khí khi vận hành (Nhà thầu chưa khắc phục)','Nhiều van tay và van khí nén ở hệ thống hoàn nguyên hạt bị rỉ sét, ăn mòn.','Bơm nhập và chuyển HCl hoàn nguyên bị kẹt, nhà thầu đang tháo ra chưa có công tác mới','Máy nén khí A nhà thầu tiến hành tháo bộ nén cấp 1 và đường ống từ bộ nén cấp 1 đến bộ trao đổi nhiệt để vệ sinh.','Chiller B, máy sản xuất H2 B và máy nén B chưa khả dụng','Máy nén khí H2 A bị rò khí'];if(!Array.isArray(db.issues))db.issues=defaults.slice();
